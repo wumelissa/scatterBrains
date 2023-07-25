@@ -5,7 +5,7 @@ function data=getPhotonHistory(history_filename)
 
 % input: .mch filename
 
-% output: data array with shape [ndets 2*ntissue_layers+1]
+% output: data array with shape (ndets, 2*ntissue_layers+1)
 % columns for data array are [det_idx pl_tissue1 pl_tissue2 ... pl_tissuen
 % mt_tissue1 mt_tissue2 ...mt_tissuen]
 
@@ -13,12 +13,11 @@ function data=getPhotonHistory(history_filename)
 % contributing author: Stefan Carp (stefan.carp@mgh.harvard.edu)
 
 % this file is part of scatterBrains
-% License: GPLv3
 
-[mch_data,mch_header]=loadmch(history_filename);
+[mch_data,mch_header]=loadmch(history_filename,'float32=>float64');
 
-if (mch_header.recordnum-2)<(2*mch_header.medianum),
-    error('History file does not contain momentum transfer information \n');
+if (mch_header.recordnum-2)<(2*mch_header.medianum)
+    error('History file does not contain momentum transfer information; please set --momentum flag to 1.\n');
 end
 
 pl_index_start=2+mch_header.medianum;

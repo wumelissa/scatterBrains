@@ -21,7 +21,16 @@ This is an open data set of MRI-based human head models, along with some associa
 ## Dependencies
 ===================================================
 
-Required dependencies are the mesh-based Monte Carlo simulation software (version 1.9, v2020, Moon Cake - beta, https://sourceforge.net/projects/mcx/files/mmc/mmc%20binary/1.9%20%28v2020%20Moon%20Cake%20-%20beta%29/) and iso2mesh package (version 1.9.0, Century Egg, https://iso2mesh.sourceforge.net/cgi-bin/index.cgi) written by Qianqian Fang. Please download them into the same folder as this package.
+Required dependencies are the [mesh-based Monte Carlo simulation software](https://sourceforge.net/projects/mcx/files/mmc/mmc%20binary/1.9%20%28v2020%20Moon%20Cake%20-%20beta%29/) (version 1.9, v2020, Moon Cake - beta, ) and [iso2mesh package](https://iso2mesh.sourceforge.net/cgi-bin/index.cgi) (version 1.9.0, Century Egg) written by Qianqian Fang. Please download them into the same folder as this package.
+
+The above URLs link directly to the SourceForge folders so the appropriate software versions are explicitly provided. Please also register your download for MMC and iso2mesh in the below links:
+
+[MMC](https://docs.google.com/forms/d/e/1FAIpQLSch4Qce6B4nmzuV_2mig2ILndo_7dyg7X2A8rrEuJOF4gNKEg/viewform?entry.1890448640&entry.209391072&entry.895416386&entry.268021351=Please+keep+me+updated+for+future+software+releases+and+bug+fixes+(expect+a+few+times+every+year)&entry.1852600579&entry.1001921367=MCX)
+
+
+[iso2mesh](https://docs.google.com/forms/d/13p30eVJUEtGoeI0EdgCvq8VRoyzcMha8auDrQ0zX-fs/viewform?edit_requested=true)
+
+**Author's note (July 25th 2023)**: I was having some CUDA driver issues with MMC v2020, version 1.9, although I was able to run simulations with the CPU (SSE). I installed the latest [Github version](https://github.com/fangq/mmc), v2023.01, version 1.9.6 Moon Cake, and ran GPU simulations on there. The v2023.01 GPU-simulated autocorrelations seem to match the v2020 CPU ones, so downloading MMC v2023.01 may be an option if you are running into the same issue.
 
 ## Subject models
 ===================================================
@@ -72,9 +81,9 @@ calculates the distance from a specified surface location to the nearest brain t
 ## Running MMC
 ===================================================
 
-Please remember to add an optical property file (e.g. "prop_subject03.dat") to the relevant subject folder before running MMC. More information about this can be found on the MMC help page: http://mcx.space/wiki/index.cgi?MMC
+Please remember to add an optical property file (e.g. "prop_subject03.dat") to the relevant subject folder before running MMC. Example for how to do this is provided in the example.m script. More information about this can be found on the MMC help page: http://mcx.space/wiki/index.cgi?MMC
 
-Sometimes the source is placed a little too far away from the surface of the head, which prevents MMC from running. To address this, the source can be moved incrementally along the direction of the source launch vector until the source is detected to be touching an element. This is shown in lines 64-72 of the example.m script.
+Sometimes the source is placed a little too far away from the surface of the head, which prevents MMC from running. To address this, the source can be moved incrementally along the direction of the source launch vector until the source is detected to be touching an element. This is shown in the example.m script.
 
 ## Acknowledgements
 ===================================================
@@ -93,5 +102,10 @@ This dataset and associated functions are dependent on and/or primarily written 
 - License: GNU General Public License version 2.0 or later
 - URL: https://iso2mesh.sourceforge.net/cgi-bin/index.cgi
 
+This toolbox was developed with support from NIH grant R01NS100750.
+
 ## References
 ===================================================
+
+When using this toolbox in publications or presentations, please cite the following paper:
+

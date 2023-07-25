@@ -14,7 +14,6 @@ function distance=find_distance_of_nearest_voxel(volume,point,tissue_index)
 % author: Melissa Wu (wu.melissa.m <at> gmail.com)
 
 % this file is part of scatterBrains
-% License: GPLv3
 
 [r,c,v]=ind2sub(size(volume),find(volume==tissue_index));
 

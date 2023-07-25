@@ -1,8 +1,17 @@
 % make sure to install iso2mesh version 1.9.0 (century egg) and mmc 
 % version 1.9 (v2020, Moon Cake - beta) in the same folder.
 
-iso2mesh_path=['.' filesep 'iso2mesh'];
-mmc_path=['.' filesep 'mmc'];
+% author: Melissa Wu (wu.melissa.m <at> gmail.com)
+
+% All units are in mm
+
+% EDIT to scatterBrains path directory
+scatterBrains_path='.';
+cd(scatterBrains_path)
+
+% EDIT to directory where iso2mesh and mmc are installed
+iso2mesh_path=[scatterBrains_path filesep 'iso2mesh'];
+mmc_path=[scatterBrains_path filesep 'mmc'];
 
 addpath(genpath(iso2mesh_path))
 addpath(genpath(mmc_path))
@@ -10,8 +19,15 @@ addpath(genpath(mmc_path))
 %% convert volume to mesh, save mesh
 
 subject_num='03';
-load(['.' filesep 'Subject' subject_num filesep 'Subject' subject_num '_volume.mat'])
+load([scatterBrains_path filesep 'Subject' subject_num filesep 'Subject' subject_num '_volume.mat'])
 
+% if the user is interested, please see "vol2mesh" documentation in the
+% iso2mesh toolbox. Here, 5 denotes the maximum size of the surface
+% triangles, and 200 denotes the max volume of the tetrahedral elements.
+% (in previous study, we tested some simulations with these values changed
+% to 2 and 100, respectively, but found no differences in DCS brain
+% sensitivity results. The user is encouraged to test these parameters
+% themselves.)
 newvol=uint8(vol);
 [node,elem,face]=v2m(newvol,[],5,200,'cgalmesh');
 

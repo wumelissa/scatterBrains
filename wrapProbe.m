@@ -25,7 +25,6 @@ function [source,det_arr,source_unit_vec,det_unit_vec]=wrapProbe(node,face,point
 % author: Melissa Wu, wu.melissa.m <at> gmail.com
 
 % this file is part of scatterBrains
-% License: GPLv3
 
 if nargin<7, showfig=0;end
 if nargin<6, det_distances=5:5:40;end
@@ -38,13 +37,15 @@ if nargin<6, det_distances=5:5:40;end
 
 %% find outline of intersection of plane + volume
 
-[bcutpos,~,bcutedges]=qmeshcut(face,node,node(:,1),[rz;lz;point]);
-[bcutpos,bcutedges]=removedupnodes(bcutpos,bcutedges);
-bcutloop=extractloops(bcutedges);
+% taken from iso2mesh demo code - start
+[cut_pos,~,cut_edges]=qmeshcut(face,node,node(:,1),[rz;lz;point]);
+[cut_pos,cut_edges]=removedupnodes(cut_pos,cut_edges);
+cut_loop=extractloops(cut_edges);
 
-bcutloop(isnan(bcutloop))=[]; % there can be multiple loops, remove the separators
+cut_loop(isnan(cut_loop))=[];
+% taken from iso2mesh demo code - end  
 
-outer_line=bcutpos(bcutloop,:);
+outer_line=cut_pos(cut_loop,:);
 
 % remove any points that are on the ears
 % right_ear_indices=outer_line(:,1)<(rz(1)-1) & outer_line(:,2) > (rz(2)-10) & outer_line(:,3) < rz(3);
@@ -175,11 +176,11 @@ det_arr=temp_interp_points(index_values,:);
 %% combining into single array and finding normals for source and each detector
 
 % find source normal
-[~,source_unit_vec]=getNormalVec(node,face,source);
+[source_unit_vec,~]=getNormalVec(node,face,source);
 
 % find detector normals
 for det_idx=1:length(det_distances)
-    [~,det_unit_vec(det_idx,:)]=getNormalVec(node,face,squeeze(det_arr(det_idx,:)));
+    [det_unit_vec(det_idx,:),~]=getNormalVec(node,face,squeeze(det_arr(det_idx,:)));
 end
 
 %% plot

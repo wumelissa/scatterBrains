@@ -1,20 +1,16 @@
-function [g2,g1]=mc_g2_Db_beta(Db,beta,tau,expg2,num_dets,mts,exps,g1_norms,...
-    num_layers,k0,varargin)
-
-% calculates g2; see lines
-% 54-65 of calculate_g2_g1.m function for example
+function [g2,g1]=mc_g2_Db_beta(Db,beta,tau,num_dets,...
+    num_layers,k0,mua,his_data,photon_indices,varargin)
 
 % inputs:
-% Db: brownian motion coefficient
+% Db: brownian motion coefficient mm^2/s
 % beta: coherence factor
-% tau: array of delays
-% expg2: experimental g2 (for plotting purposes; can be set to empty)
+% tau: array of delays in seconds
 % num_dets: number of detectors
-% mts: cell array of momentum transfers per detector
-% exps: cell array of exp(-mua*pl) per detector
-% g1_norms: cell array of normalization factors per detector
 % num_layers: number of tissue layers
-% k0: wavenumber
+% k0: wavenumber mm-1
+% mua: absorption coefficient mm-1, one for each tissue layer
+% his_data: photon history array
+% photon_indices: indices of the rows corresponding to each detector
 % varargin: set flag as 1 to plot the curve
 
 % outputs:
@@ -25,25 +21,29 @@ function [g2,g1]=mc_g2_Db_beta(Db,beta,tau,expg2,num_dets,mts,exps,g1_norms,...
 % contributing author: Stefan Carp (stefan.carp <at> mgh.harvard.edu)
 
 % this file is part of scatterBrains
-% License: GPLv3
 
-%% adding up g2
+%% calculating g1, g2
 
-if ~isempty(varargin), showfig=varargin{1}; else, showfig=0; end
+if ~isempty(varargin), expg2=varargin{1}; else, expg2=[]; end
 
-if length(Db)==1, Db=ones(num_layers,1)*Db; end
+if length(Db)==1, Db=ones(1,num_layers)*Db; end
 
 for I=1:num_dets
-    temp_big=exp(-(k0.^2.*2*mts{I}*(Db*tau))).*exps{I};
-    g1(:,I)=sum(temp_big)'/g1_norms{I};
-    g2(:,I)=1+beta(I)*(g1(:,I).^2);
+    mtransfer=his_data(photon_indices{I},(num_layers+2):end);
+    path_length=his_data(photon_indices{I},2:(num_layers+1));
+    parfor J=1:length(tau)
+        rmsdisp=6*Db.*tau(J);
+        g1(J,I)=sum(exp(-(k0.^2.*rmsdisp/3)*mtransfer'-mua*path_length'));
+    end
+    g1_norm=double(sum(exp(-mua*path_length')));
+    g1(:,I)=g1(:,I)/g1_norm;
+    g2(:,I)=1+beta(I)*g1(:,I).^2;
+    fprintf(['Detector %d out of %d finished: %d photons detected\n'],I,num_dets,size(mtransfer,1))
 end
-  
-g2=gather(g2);
  
  %% plotting
  
- if showfig
+ if ~isempty(expg2)
      figure(149);
      hold off;
      semilogx(repmat(tau,[1 num_dets]),expg2(:));

@@ -1,16 +1,16 @@
 
 function y = semi_infinite_g2(x,taus,fit_options)
 
-% returns autocorrelation using semi-infinite diffuse correlation equation
+% returns intensity autocorrelation using semi-infinite diffusion correlation equation
 
 % input:
 %   x: array with [beta, Db] value
 %   taus: array of taus
 %   fit_options: structure with fields
 %       mu_a: absorption, mm-1
-%       mu_s: scattering, mm-1
+%       mu_s: reduced scattering, mm-1
 %       alpha: probability of scattering from a moving scatterer
-%       lambda: wavelength, mm-1
+%       lambda: wavelength, mm
 %       rho: source-detector distance, mm
 %       n: index of refraction
 
@@ -18,7 +18,6 @@ function y = semi_infinite_g2(x,taus,fit_options)
 % contributing author: Stefan Carp (stefan.carp <at> mgh.harvard.edu)
 
 % this file is part of scatterBrains
-% License: GPLv3
 
 %% variable assignment
 
@@ -29,7 +28,7 @@ lambda = fit_options.lambda;
 rho = fit_options.rho;
 n0=fit_options.n;
 beta = x(1);
-D = x(2)/1e9;
+D = x(2);
 
 %%
 

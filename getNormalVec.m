@@ -1,19 +1,19 @@
-function [node_closest_to_point,point_unit_vec]=getNormalVec(node,face,specified_point)
+function [point_unit_vec,node_closest_to_point]=getNormalVec(node,face,specified_point)
 
 % obtains normal vector to center of volume from specified point on head surface
 
 % input:
 %   node: array containing node coordinates of mesh, dimension (nnodes,3)
-%   face: array containing face coordinates of mesh, dimension (nnodes,4)
+%   face: array containing face coordinates of mesh, dimension (nnodes,3)
 %   specified_point: array containing coordinates of specified point, dimension (1,3)
 
 % output:
-%   node_closest_to_point: coordinates of node closest to point, dimension (1,3)
 %   point_unit_vec: unit normal vector from node closest to point
+%   node_closest_to_point: coordinates of node closest to point, dimension (1,3)
 
 % author: Melissa Wu (wu.melissa.m <at> gmail.com)
 % this file is part of scatterBrains
-% License: GPLv3
+
 %%
 
 nodeindices=unique(face(:));
