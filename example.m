@@ -155,7 +155,7 @@ n=ones(1,5)*1.37;
 % g=[0.01 0.01 0.01 0.01 0.01];
 % n=[1.37 1.37 1.37 1.37 1.37];
 
-write_dat_file(mua,mus,g,n,[scatterBrains_path filesep 'Subject' subject_num],['subject' subject_num])
+write_prop_file(mua,mus,g,n,[scatterBrains_path filesep 'Subject' subject_num],['subject' subject_num])
 
 %% run mmc
 

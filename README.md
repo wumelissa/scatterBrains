@@ -18,6 +18,10 @@ Author: Melissa M. Wu (wu dot melissa dot m at gmail.com)
 
 This is an open data set of MRI-based human head models, along with some associated functions, compiled to generate input data for mesh-based Monte Carlo light transport simulations. The data set consists of volume and mesh models from sixteen subject MRI scans, as well as approximately 800 systematically placed head surface locations for each model. The models themselves are divided into five tissue layers, representing the scalp, skull, cerebrospinal fluid, grey matter, and white matter. On any given model, users are able to select one of the pre-defined head surface locations (or another location of their own choosing) and input any desired source-detector distances into a probe-placing function - the function will then return 3D source and detector locations, along with a source launch vector, appropriate for running a mesh-based Monte Carlo simulation.
 
+![Example cut](docs/figure1.png)
+
+<br>*A subject's 805 head surface locations along with a cross-section of their head anatomy.*
+
 ## Dependencies
 ===================================================
 
@@ -30,7 +34,7 @@ The above URLs link directly to the SourceForge folders so the appropriate softw
 
 [iso2mesh](https://docs.google.com/forms/d/13p30eVJUEtGoeI0EdgCvq8VRoyzcMha8auDrQ0zX-fs/viewform?edit_requested=true)
 
-**Author's note (July 25th 2023)**: I was having some CUDA driver issues with MMC v2020, version 1.9, although I was able to run simulations with the CPU (SSE). I installed the latest [Github version](https://github.com/fangq/mmc), v2023.01, version 1.9.6 Moon Cake, and ran GPU simulations on there. The v2023.01 GPU-simulated autocorrelations seem to match the v2020 CPU ones, so downloading MMC v2023.01 may be an option if you are running into the same issue.
+**Author's note (July 25th 2023)**: I was having some CUDA driver issues with MMC v2020, version 1.9, although I was able to run simulations with the CPU (SSE). I installed the latest [Github version](https://github.com/fangq/mmc), v2023.01, version 1.9.6 Moon Cake, and ran GPU simulations on there. The v2023.01 GPU-simulated autocorrelations (for DCS) seem to match the v2020 CPU ones, so downloading MMC v2023.01 may be an option if you are running into the same issue.
 
 ## Subject models
 ===================================================
@@ -41,7 +45,7 @@ Each subject folder contains several types of files:
 
 > .dat files 
  
-contain the subject mesh information required to run the Monte Carlo simulations. They can be loaded into Matlab using the "readmmc" functions provided in the MMC software (see example.m lines 19-22 for an example). The models have been de-identified and also have had their ears removed for more accurate probe placement in certain areas of the head. If models with the ears are needed, please send Melissa an email and she can provide them to you.
+contain the subject mesh information required to run the Monte Carlo simulations. They can be loaded into Matlab using the "readmmc" functions provided in the MMC software (see second cell of example.m). The models have been de-identified and also have had their ears removed for more accurate probe placement in certain areas of the head. If models with the ears are needed, please send Melissa an email and she can provide them to you.
 
 >"subject locs" .mat files 
 
@@ -103,6 +107,13 @@ This dataset and associated functions are dependent on and/or primarily written 
 - URL: https://iso2mesh.sourceforge.net/cgi-bin/index.cgi
 
 This toolbox was developed with support from NIH grant R01NS100750.
+
+## Contributions and support
+===================================================
+
+Contributions to the scatterBrains dataset and toolbox are encouraged. Please contact Melissa at (wu dot melissa dot m at gmail.com) if you have code or data you would like to contribute.
+
+For questions, please post to scatterbrains@googlegroups.com and an effort will be made to answer as soon as possible.
 
 ## References
 ===================================================
