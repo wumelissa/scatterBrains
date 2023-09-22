@@ -49,7 +49,7 @@ contain the subject mesh information required to run the Monte Carlo simulations
 
 >"subject locs" .mat files 
 
-contain the ~800 points that have been systematically placed on each subject's head surface. The example.m script has a visualization of these for subject 3. These files also contain rz and lz, two other points which are needed as inputs to the probe placing function.
+contain the ~800 points that have been systematically placed on each subject's head surface. The example.m script has a visualization of these for subject 3. We have also included the total extracerebral thickness at each of these points ('distance2brain' variable). These files also contain rz and lz, two other points which are needed as inputs to the probe placing function.
 
 > "subject mesh" .mat files 
 
@@ -58,6 +58,13 @@ contain the node, elem, and face variables for the models. They also contain lay
 > "subject volume" .mat files 
 
 contain the volume files which were used to generate the mesh files. 
+
+**The tissue indices** for the mesh and volumes correspond to:\
+1: scalp\
+2: skull\
+3: cerebrospinal fluid\
+4: grey matter\
+5: white matter
 
 ## Example scripts
 ===================================================

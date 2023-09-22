@@ -35,6 +35,13 @@ savemmcmesh(['subject' subject_num],node(:,1:3),elem);
 
 %% generate surface meshes for visualization
 
+% the tissue indices correspond to:
+% 1: scalp
+% 2: skull
+% 3: cerebrospinal fluid
+% 4: grey matter
+% 5: white matter
+
 for tiss_type=1:5;
     [surfaceNodes{tiss_type},surfaceElem{tiss_type}]=v2s(newvol,tiss_type,1.5);
 end

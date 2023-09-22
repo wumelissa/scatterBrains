@@ -43,6 +43,7 @@ load([scatterBrains_path filesep 'Subject' subject_num filesep 'Subject' subject
 
 pt_idx=125;
 point=locs(pt_idx,:);
+fprintf('Extracerebral thickness at this point is %.2f mm\n',distance2brain(pt_idx))
 
 figure(149)
 trimesh(face(:,1:3),node(:,1),node(:,2),...
@@ -141,6 +142,13 @@ fclose(fileID);
 % mus: scattering coefficient (not reduced)
 % g: anisotropy
 % n: refractive index
+
+% the tissue indices correspond to:
+% 1: scalp
+% 2: skull
+% 3: cerebrospinal fluid
+% 4: grey matter
+% 5: white matter
 
 mua=ones(1,5)*0.015;
 mus=ones(1,5);

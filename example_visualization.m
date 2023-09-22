@@ -29,6 +29,13 @@ load([scatterBrains_path filesep 'Subject' subject_num filesep 'Subject' subject
 
 % Zoom in and out of the mesh to see the tissue structure inside!
 
+% the tissue indices correspond to:
+% 1: scalp
+% 2: skull
+% 3: cerebrospinal fluid
+% 4: grey matter
+% 5: white matter
+
 colors=[235 204 171;
     192 192 192;
     153 204 255;
