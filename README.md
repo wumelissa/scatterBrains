@@ -127,3 +127,4 @@ For questions, please post to scatterbrains@googlegroups.com and an effort will 
 
 When using this toolbox in publications or presentations, please cite the following paper:
 
+Melissa M. Wu, Roarke W. Horstmeyer, Stefan A. Carp, "scatterBrains: an open database of human head models and companion optode locations for realistic Monte Carlo photon simulations," J. Biomed. Opt. 28(10) 100501 (5 October 2023)
