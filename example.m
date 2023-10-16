@@ -188,7 +188,8 @@ max_photons=1e5; % photon detection cap to save computation
 beta=0.5; % coherence factor in Siegert relation; one for each detector or one value for all detectors
 
 % calculate g2, g1
-[g2,g1,tau]=calculate_g2_g1([scatterBrains_path filesep 'Subject' subject_num filesep 'subject' subject_num '.mch'],Db,tau,lambda,max_photons,beta);
+[g2,g1,tau]=calculate_g2_g1([scatterBrains_path filesep 'Subject' subject_num filesep 'subject' subject_num '.mch'],...
+    'Db',Db,'tau',tau,'lambda',lambda,'max_photons',max_photons,'beta',beta);
 
 % plot
 figure(151)

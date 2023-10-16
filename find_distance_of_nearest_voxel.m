@@ -15,6 +15,12 @@ function distance=find_distance_of_nearest_voxel(volume,point,tissue_index)
 
 % this file is part of scatterBrains
 
+arguments
+    volume (:,:,:) double
+    point (1,3) double
+    tissue_index (1,1) double
+end
+
 [r,c,v]=ind2sub(size(volume),find(volume==tissue_index));
 
 for I=1:length(r)

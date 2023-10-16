@@ -14,6 +14,11 @@ function [point_unit_vec,node_closest_to_point]=getNormalVec(node,face,specified
 % author: Melissa Wu (wu.melissa.m <at> gmail.com)
 % this file is part of scatterBrains
 
+arguments
+    node (:,3) double
+    face (:,3) double
+    specified_point (1,3) double
+end
 %%
 
 nodeindices=unique(face(:));

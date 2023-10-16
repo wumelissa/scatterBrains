@@ -13,6 +13,12 @@ function varargout=get_surface_loc(face,node,locs)
 % author: Melissa Wu, wu.melissa.m <at> gmail.com
 
 % this file is part of scatterBrains
+
+arguments
+    face (:,3) double
+    node (:,3) double
+    locs (:,3) double
+end
 %%
 
 % plot mesh

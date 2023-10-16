@@ -1,4 +1,4 @@
-function [g2,g1,tau]=calculate_g2_g1(history_file,Db,tau,lambda,max_photons,beta,varargin)
+function [g2,g1,tau]=calculate_g2_g1(history_file,options)
 
 % this function calculates g2 and g1 
 
@@ -21,11 +21,21 @@ function [g2,g1,tau]=calculate_g2_g1(history_file,Db,tau,lambda,max_photons,beta
 
 % this file is part of scatterBrains
 
-if nargin<6, beta=0.5; end
-if nargin<5, max_photons=1e5; end
-if nargin<4, lambda=850e-6; end
-if nargin<3, tau=logspace(-8,0,200); end
-if nargin<2, Db=6e-6; end
+% check arguments and define variables
+arguments
+    history_file char
+    options.Db (1,1) double = 6e-6 % mm^2/s
+    options.tau (1,:) double = logspace(-8,0,200)
+    options.lambda (1,1) double = 850e-6 % mm
+    options.max_photons (1,1) double = 1e5
+    options.beta (1,1) double = 0.5
+end
+
+Db=options.Db;
+tau=options.tau;
+lambda=options.lambda;
+max_photons=options.max_photons;
+beta=options.beta;
 
 %% load photon history and optical properties
 
@@ -59,5 +69,5 @@ end
 k0=2*pi*n/lambda;
 
 fprintf('Calculating g1...\n')
-[g2,g1]=mc_g2_Db_beta(Db,beta,tau,num_dets,num_tissue_layers,k0,mua,his_temp,photon_indices);
+[g2,g1]=mc_g2_Db_beta(his_temp,photon_indices,Db,beta,tau,num_dets,num_tissue_layers,k0,mua);
 fprintf('Done.\n')

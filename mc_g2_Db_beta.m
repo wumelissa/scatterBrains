@@ -1,5 +1,5 @@
-function [g2,g1]=mc_g2_Db_beta(Db,beta,tau,num_dets,...
-    num_layers,k0,mua,his_data,photon_indices,varargin)
+function [g2,g1]=mc_g2_Db_beta(his_data,photon_indices,Db,beta,tau,num_dets,...
+    num_layers,k0,mua,varargin)
 
 % inputs:
 % Db: brownian motion coefficient mm^2/s

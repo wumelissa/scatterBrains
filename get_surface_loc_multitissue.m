@@ -13,6 +13,12 @@ function varargout=get_surface_loc_multitissue(surfaceElem,surfaceNodes,locs)
 % author: Melissa Wu, wu.melissa.m <at> gmail.com
 
 % this file is part of scatterBrains
+
+arguments
+    surfaceElem (1,:) cell
+    surfaceNodes (1,:) cell
+    locs (:,3) double
+end
 %%
 
 % plot mesh
