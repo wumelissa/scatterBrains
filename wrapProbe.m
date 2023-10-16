@@ -26,7 +26,7 @@ function [source,det_arr,source_unit_vec,det_unit_vec]=wrapProbe(node,face,point
 
 % this file is part of scatterBrains
 
-if nargin<7, showfig=0;end
+% if nargin<7, showfig=0;end
 if nargin<6, det_distances=5:5:40;end
 
 % if isempty(varargin)
@@ -185,7 +185,7 @@ end
 
 %% plot
 
-if showfig
-    plotSDmesh(node,face,point,source,source_unit_vec,det_arr,det_unit_vec);
-end
+% if showfig
+%     plotSDmesh(node,face,point,source,source_unit_vec,det_arr,det_unit_vec);
+% end
 
