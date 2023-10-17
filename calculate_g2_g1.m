@@ -24,7 +24,7 @@ function [g2,g1,tau]=calculate_g2_g1(history_file,options)
 % check arguments and define variables
 arguments
     history_file char
-    options.Db (1,1) double = 6e-6 % mm^2/s
+    options.Db (1,:) double = 6e-6 % mm^2/s
     options.tau (1,:) double = logspace(-8,0,200)
     options.lambda (1,1) double = 850e-6 % mm
     options.max_photons (1,1) double = 1e5
