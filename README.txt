@@ -10,6 +10,7 @@ Author: Melissa M. Wu (wu dot melissa dot m at gmail.com)
 - [Subject models](#subject-models)
 - [Example scripts](#example-scripts)
 - [Running MMC](#running-mmc)
+- [Related utilities](#related-utilities)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
   
@@ -95,6 +96,21 @@ calculates the distance from a specified surface location to the nearest brain t
 Please remember to add an optical property file (e.g. "prop_subject03.dat") to the relevant subject folder before running MMC. Example for how to do this is provided in the example.m script. More information about this can be found on the MMC help page: http://mcx.space/wiki/index.cgi?MMC
 
 Sometimes the source is placed a little too far away from the surface of the head, which prevents MMC from running. To address this, the source can be moved incrementally along the direction of the source launch vector until the source is detected to be touching an element. This is shown in the example.m script.
+
+## Related utilities
+===================================================
+
+### DCS-SCOS
+
+The subfolder `dcs_scos` contains code for simulating DCS and speckle contrast optical spectroscopy measurements. If using the code in publications or presentations, please cite the following work:
+
+Robinson, M. et al, "Comparing the performance potential of speckle contrast optical spectroscopy and diffuse correlation spectroscopy for cerebral blood flow monitoring using Monte Carlo simulations in realistic head geometries," Neurophoton. 11(1) 015004.
+
+### SEGMENT
+
+The subfolder `segment` contains code for segmenting T1 MRI scans into 5-layer tissue segments. If using in publications or presentations, please cite the following work:
+
+Perdue, Katherine L, and Solomon G Diamond. "T1 magnetic resonance imaging head segmentation for diffuse optical tomography and electroencephalography." Journal of biomedical optics vol. 19,2 (2014): 026011.
 
 ## Acknowledgements
 ===================================================
